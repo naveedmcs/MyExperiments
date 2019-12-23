@@ -18,7 +18,7 @@ class ViewController: UIViewController {
             case .success( let objects):
                 print( objects.count)
             case .failure( let error):
-                print(error)
+                print(error.localizedDescription)
             }
         }
     }
