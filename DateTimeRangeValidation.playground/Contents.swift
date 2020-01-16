@@ -58,9 +58,6 @@ class DateTimeValidator {
 
     private let format = "yyyy/MM/dd HH:mm:ss"
     
-    
-   
-
     func isBetweenTwoDates(selectedDate: String, startTime:Int , endTime: Int ) -> Bool {
         let startTime = timeFormate(unixTime: startTime)
         let endTime = timeFormate(unixTime: endTime)
@@ -72,6 +69,15 @@ class DateTimeValidator {
         return result
     }
     
+    func getTime(unixTime: Int) -> Date? {
+        //let lang = UserDefaults.standard.string(forKey: "i18n_language")
+        let date = Date(timeIntervalSince1970: TimeInterval(unixTime))
+        let dateFormatter = DateFormatter()
+        //   // Returns date formatted as 12 hour time.
+        dateFormatter.dateFormat = format
+
+        return date
+    }
 
 }
 
@@ -83,12 +89,9 @@ private extension DateTimeValidator {
     private func isBetweenMyTwoDates(date: Date, start: String, end: String) -> Bool {
         
         let dateMaker = DateFormatter()
+        dateMaker.dateFormat = format
         let start = dateMaker.date(from: start)!
         let end = dateMaker.date(from: end)!
-        
-        print("start Time: \(start)")
-        print("End Time : \(end)")
-        print("selected Date: \(date)")
         
         if start.compare(date) == .orderedAscending && end.compare(date) == .orderedDescending {
             return true
@@ -96,13 +99,13 @@ private extension DateTimeValidator {
         return false
     }
     
-    private func timeFormate(unixTime: Int) -> String {
+    private func timeFormate(unixTime: Int, formate:String =  "yyyy/MM/dd HH:mm:ss") -> String {
         
         //let lang = UserDefaults.standard.string(forKey: "i18n_language")
         let date = Date(timeIntervalSince1970: TimeInterval(unixTime))
         let dateFormatter = DateFormatter()
         //   // Returns date formatted as 12 hour time.
-        dateFormatter.dateFormat = format
+        dateFormatter.dateFormat = formate
         let result = dateFormatter.string(from: date as Date)
         print("TimeFormatter: \(result)")
         return result
@@ -114,4 +117,16 @@ private extension DateTimeValidator {
 
 
 let dateValidator = DateTimeValidator()
-dateValidator.isBetweenTwoDates(selectedDate:"2019/12/10 8:05:00", startTime: companyATiming1.start, endTime: companyATiming1.end)
+ let isValid = dateValidator.isBetweenTwoDates(selectedDate:"2019/12/10 9:4:00",
+                                startTime: companyATiming1.start,
+                                endTime: companyATiming1.end)
+if isValid == true {
+   print ("selected date time is valid")
+}
+else {
+    print("selected date time is not valid")
+}
+
+print(dateValidator.getTime(unixTime: companyATiming1.start))
+let minimuDate = dateValidator.getTime(unixTime: companyATiming1.start)
+let maxDate = dateValidator.getTime(unixTime: companyATiming1.end)

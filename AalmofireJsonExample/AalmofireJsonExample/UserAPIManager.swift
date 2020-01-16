@@ -49,11 +49,7 @@ class UserAPIManager: BaseManager {
 
 
 
-enum BackendError: Error {
-  case urlError(reason: String)
-  case objectSerialization(reason: String)
-  case parsing(reason: String)
-}
+
 
 
 

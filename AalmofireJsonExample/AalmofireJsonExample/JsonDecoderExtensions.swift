@@ -10,6 +10,15 @@ import Foundation
 import Alamofire
 
 
+enum BackendError: Error {
+  case urlError(reason: String)
+  case objectSerialization(reason: String)
+  case parsing(reason: String)
+  case responseErrorMessage(reason:String)
+}
+
+
+
 typealias ResponseHandler<T: Decodable> =  (Result<T>) -> Void
 
 
