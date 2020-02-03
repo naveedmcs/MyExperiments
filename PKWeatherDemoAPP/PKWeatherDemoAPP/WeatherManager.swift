@@ -19,7 +19,7 @@ struct WeatherManager
     
     func getWeatherDetailBy(lat:String, long: String)
     {
-        let requestURL = "https://samples.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(long)&appid=\(AppConstant.weather.apiKey.rawValue)"
+        let requestURL = "https://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(long)&appid=\(AppConstant.weather.apiKey.rawValue)"
         
         httpUtility.getApiData(requestUrl:requestURL, resultType: WeatherResponse.self) { (weatherResult, error)  in
             
