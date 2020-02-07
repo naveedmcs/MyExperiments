@@ -19,9 +19,10 @@ class ViewController: UIViewController {
         didSet {
             self.navigationItem.title = "Pakistan Cities (\(pakistanCitiesStorage.count))"
         }
+
     }
     
-    var pakistanCities: [City] = [] {
+    var filteredCities: [City] = [] {
         didSet {
             tableView.reloadData()
         }
@@ -41,8 +42,8 @@ extension ViewController {
     
       private func setupView() {
           self.navigationItem.title = "Pakistan Cities"
-          pakistanCities = AppStorage.pakistanCities
-          pakistanCitiesStorage = pakistanCities
+          filteredCities = AppStorage.pakistanCities
+          pakistanCitiesStorage = filteredCities
           tableView.registerCell("CityTableViewCell")
       }
     
@@ -53,11 +54,12 @@ extension ViewController {
 
     @IBAction func searchTextDidChangeEditing(_ sender: UITextField) {
         if sender.text?.isEmpty ?? true {
-            pakistanCities = pakistanCitiesStorage
+            filteredCities = pakistanCitiesStorage
             self.tableView.reloadData()
         }else {
-            let filters = pakistanCities.filter({ ($0.name?.lowercased().contains(sender.text!))!})
-            self.pakistanCities = filters
+            filteredCities = pakistanCitiesStorage
+            let filters = filteredCities.filter({ ($0.name?.lowercased().contains(sender.text!))!})
+            self.filteredCities = filters
         }
         
     }
@@ -67,12 +69,12 @@ extension ViewController {
  //MARK:- tableview implementation
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pakistanCities.count
+        return filteredCities.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CityTableViewCell") as! CityTableViewCell
-        let city =  pakistanCities[indexPath.row]
+        let city =  filteredCities[indexPath.row]
         cell.loadCell(object: city)
         return cell
     }
@@ -80,7 +82,7 @@ extension ViewController: UITableViewDataSource {
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let city = pakistanCities[indexPath.row]
+        let city = filteredCities[indexPath.row]
         dump(city)
         let vc = WeatherDetailVC.getInstance(city: city)
         self.navigationController?.pushViewController(vc, animated: true)
