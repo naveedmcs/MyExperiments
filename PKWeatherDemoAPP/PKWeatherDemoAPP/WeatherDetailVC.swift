@@ -12,16 +12,20 @@ class WeatherDetailVC: UIViewController {
 
     //MARK:-  outlets
     @IBOutlet weak var label: UILabel!
+    
    //MARK:-  variables
-    private var cityObject: City?
+    private var city: City?
 
+    
     //instance dependency Injection
-    static func getInstance(city: City?) -> UIViewController {
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+    static func getInstance(city: City) -> UIViewController {
+        let storyBoard = AppStoryBoard.main.getInstance
         let vc = storyBoard.instantiateViewController(withIdentifier: "WeatherDetailVC") as! WeatherDetailVC
-        vc.cityObject = city
+        vc.city = city
         return vc
+    
     }
+    
 }
 
 //MARK:-  life cycle
@@ -32,12 +36,37 @@ extension WeatherDetailVC {
     }
     
     private  func setupView()  {
-        let lat = "\(cityObject?.coord?.lat ?? 0)"
-        let long = "\(cityObject?.coord?.lon ?? 0)"
-        let object = WeatherManager(_httpUtility: HttpHandler())
-        object.getWeatherDetailBy(lat: lat, long: long)
+        let lat = "\(city?.coord?.lat ?? 0)"
+        let long = "\(city?.coord?.lon ?? 0)"
+        let object = WeatherManager()
+        
+        let loadingVC = LoadingViewController()
+        add(loadingVC)
+        object.getWeatherDetailBy(lat: lat, long: long, completion: { [weak self] result in
+            loadingVC.remove()
+            switch result {
+            case .success(result: var object):
+                self?.label.text = object.main?.formattedTemprature(type: .celcius)
+            case .failure(errorMessage: let msg):
+                debugPrint(msg)
+            }
+        })
     }
     
     
 }
 
+
+
+
+enum AppStoryBoard: String {
+        case main = "Main"
+        case profile = "Profile"
+    
+    var getInstance: UIStoryboard {
+        switch self {
+        default:
+             return UIStoryboard(name: AppStoryBoard.main.rawValue, bundle: nil)
+        }
+    }
+}

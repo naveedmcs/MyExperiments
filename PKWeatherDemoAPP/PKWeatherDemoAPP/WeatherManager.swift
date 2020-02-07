@@ -8,31 +8,24 @@
 
 import Foundation
 
-struct WeatherManager
-{
+class WeatherManager: APIBaseManager {
     
-    private let httpUtility: HttpHandler
-    
-    init(_httpUtility: HttpHandler) {
-        httpUtility = _httpUtility
-    }
-    
-    func getWeatherDetailBy(lat:String, long: String)
-    {
-        let requestURL = "https://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(long)&appid=\(AppConstant.weather.apiKey.rawValue)"
+  
+    func getWeatherDetailBy(lat:String, long: String,
+                            completion:@escaping((APIResponse<WeatherResponse, String>) -> Void)) {
+
+        let requestURL = "\(baseUrl)lat=\(lat)&lon=\(long)&appid=\(AppConstant.weather.apiKey.rawValue)"
         
-        httpUtility.getApiData(requestUrl:requestURL, resultType: WeatherResponse.self) { (weatherResult, error)  in
-            
-            guard let weatherDetail = weatherResult else {
-                print(error ?? "something went wrong")
-                return
-            }
-            
-            debugPrint(weatherDetail)
+        let request = sessionManager.request(requestURL)
+        request.response { (response) in
+            let result = self.decodeResponse(response, resultType: WeatherResponse.self)
+            completion(result)
         }
+        
+        
         
     }
 }
 
-//let objEmployee = Employee(_httpUtility: HttpHandler())
+
 

@@ -10,11 +10,11 @@ import UIKit
 
 class ViewController: UIViewController {
 
-     //MARK:-  outlets
+    
     @IBOutlet weak var tableView: UITableView!
     
     
-     //MARK:-  property observers
+   
     var pakistanCitiesStorage: [City] = [] {
         didSet {
             self.navigationItem.title = "Pakistan Cities (\(pakistanCitiesStorage.count))"
