@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WeatherDetailVC: UIViewController {
+class WeatherDetailVC: BaseVC {
 
     //MARK:-  outlets
     @IBOutlet weak var label: UILabel!
@@ -36,20 +36,23 @@ extension WeatherDetailVC {
     }
     
     private  func setupView()  {
-        let lat = "\(city?.coord?.lat ?? 0)"
-        let long = "\(city?.coord?.lon ?? 0)"
-        let object = WeatherManager()
+        let lat =  city?.coord?.latStr ?? ""
+        let long = city?.coord?.lonStr ?? ""
+       
         
         let loadingVC = LoadingViewController()
         add(loadingVC)
-        object.getWeatherDetailBy(lat: lat, long: long, completion: { [weak self] result in
+        
+        WeatherManager().getWeatherDetailBy(lat: lat, long: long, completion: { [weak self] result in
             loadingVC.remove()
             switch result {
+           
             case .success(result: var object):
-                self?.label.text = object.main?.formattedTemprature(type: .celcius)
+                    self?.label.text = object.main?.formattedTemprature(type: .celcius)
             case .failure(errorMessage: let msg):
                 debugPrint(msg)
             }
+            
         })
     }
     

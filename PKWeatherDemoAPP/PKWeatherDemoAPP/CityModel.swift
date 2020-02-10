@@ -17,5 +17,12 @@ struct City: Decodable {
     // MARK: - Coord
     struct Coord: Decodable {
         let lon, lat: Double?
+        
+        var latStr: String {
+            return "\(lat ?? 0)"
+        }
+        var lonStr: String {
+            return "\(lon ?? 0)"
+        }
     }
 }

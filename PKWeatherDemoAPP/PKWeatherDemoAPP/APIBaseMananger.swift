@@ -49,22 +49,5 @@ class APIBaseManager {
     }
     
     
-//    //SOMEWHERE ELSE IN YOUR CODE
-//    activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-//        activityIndicator.hidesWhenStopped = true
-//        self.view.addSubview(activityIndicator)
-//
-//    ///.... where you load animals
-//    func loadAnimals {
-//    ///
-//        activityIndicator.startAnimating()
-//         ////your code
-//         ///...
-//         animalQuery.findObjectsInBackground { (objects, error) in
-//           if error == nil {
-//            ///Stop the spinner
-//            activityIndicator.stopAnimating()
-//            ///...rest of your code
-//            }
-//           }
+
 }

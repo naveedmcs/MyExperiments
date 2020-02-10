@@ -18,6 +18,7 @@
 		186B330D23E7EBA10021F325 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 186B330B23E7EBA10021F325 /* LaunchScreen.storyboard */; };
 		1877CF0923E800A200F138F9 /* city.json in Resources */ = {isa = PBXBuildFile; fileRef = 1877CF0823E800A200F138F9 /* city.json */; };
 		1877CF0B23E8021D00F138F9 /* CityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1877CF0A23E8021D00F138F9 /* CityModel.swift */; };
+		189E2F0223EDA23A000854B8 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189E2F0123EDA23A000854B8 /* BaseVC.swift */; };
 		18B4592623E8069500285BBE /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4592423E8069500285BBE /* CityTableViewCell.swift */; };
 		18B4592723E8069500285BBE /* CityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B4592523E8069500285BBE /* CityTableViewCell.xib */; };
 		18B4592923E8113D00285BBE /* AppStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4592823E8113D00285BBE /* AppStorage.swift */; };
@@ -42,6 +43,7 @@
 		186B330E23E7EBA10021F325 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1877CF0823E800A200F138F9 /* city.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = city.json; path = ../../../../../Downloads/city.json; sourceTree = "<group>"; };
 		1877CF0A23E8021D00F138F9 /* CityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityModel.swift; sourceTree = "<group>"; };
+		189E2F0123EDA23A000854B8 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		18B4592423E8069500285BBE /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
 		18B4592523E8069500285BBE /* CityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityTableViewCell.xib; sourceTree = "<group>"; };
 		18B4592823E8113D00285BBE /* AppStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStorage.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				18B4593223E83E8700285BBE /* WeatherManager.swift */,
 				1817086723ED308700A4CADE /* APIBaseMananger.swift */,
 				1817086B23ED84E800A4CADE /* LoadingVC.swift */,
+				189E2F0123EDA23A000854B8 /* BaseVC.swift */,
 			);
 			path = PKWeatherDemoAPP;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 				1817086C23ED84E800A4CADE /* LoadingVC.swift in Sources */,
 				1817086823ED308700A4CADE /* APIBaseMananger.swift in Sources */,
 				18B4593123E83C4E00285BBE /* AppConstant.swift in Sources */,
+				189E2F0223EDA23A000854B8 /* BaseVC.swift in Sources */,
 				18B4592F23E83B3500285BBE /* WeatherResponse.swift in Sources */,
 				186B330123E7EBA00021F325 /* AppDelegate.swift in Sources */,
 				18B4592623E8069500285BBE /* CityTableViewCell.swift in Sources */,
